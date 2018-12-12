@@ -1,5 +1,5 @@
 -module(matrix).
--export([create_matrix/2, set_element/4]).
+-export([create_matrix/2, set_element/4, get_element/3]).
 
 -type matrix() :: [[any(), ...]].
 
