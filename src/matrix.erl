@@ -10,7 +10,7 @@ new(ColumnsSize, RowsSize, Generator) ->
 
 -spec create_matrix(pos_integer(), pos_integer()) -> matrix().
 create_matrix(ColumnsSize, RowsSize) ->
-    new(ColumnsSize, RowsSize, fun(Column, Row, _, _) ->  (Column - 1) + (Row - 1) end).
+    new(ColumnsSize, RowsSize, fun(Column, Row, _, _) ->  -1.0 *((Column - 1) + (Row - 1)) end).
 
 -spec dimension(matrix()) -> {pos_integer(), pos_integer()}.
 dimension(Matrix) ->
