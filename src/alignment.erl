@@ -9,7 +9,7 @@ compare_input() ->
 
 -spec compare_file(string()) -> matrix:matrix().
 compare_file(FileName) ->
-    case read_file(FileName) of
+    case util:read_file(FileName) of
         [] -> matrix:create_matrix(1, 1);
         [SeqA, SeqB] -> needleman_wunsch(SeqA, SeqB)
     end.
@@ -19,20 +19,6 @@ similarity(FirstGene, SecondGene) ->
     case (string:equal(FirstGene, SecondGene, true)) of
         true -> 1;
         false -> -1
-    end.
-
--spec read_file(string()) -> list().
-read_file(FileName) ->
-    case file:open(FileName, [read]) of
-        {ok, Device} -> read_lines(Device);
-        _ -> []
-    end.
-
--spec read_lines(any()) -> list().
-read_lines(Device) ->
-    case file:read_line(Device) of
-        {ok, Data} -> [string:trim(string:replace(Data, "\n", "")) | read_lines(Device)];
-        eof -> []
     end.
 
 -spec needleman_wunsch(string(), string()) -> matrix:matrix().
